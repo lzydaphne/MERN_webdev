@@ -5,6 +5,7 @@ import PostMessage from '../models/postMessage.js';
 
 const router = express.Router();
 
+//named export
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     
@@ -14,7 +15,9 @@ export const getPosts = async (req, res) => {
     
         const total = await PostMessage.countDocuments({});
         const posts = await PostMessage.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-
+/*sends a JSON response to the client. It serializes a JavaScript object to JSON format response and sends it as the response body.
+res.json() automatically sets the Content-Type header to application/json and stringifies the JSON object before sending it as the response body. 
+*/
         res.json({ data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total / LIMIT)});
     } catch (error) {    
         res.status(404).json({ message: error.message });
@@ -39,6 +42,7 @@ export const getPostsByCreator = async (req, res) => {
     const { name } = req.query;
 
     try {
+        //要在 資料庫中 find ，屬於非同步
         const posts = await PostMessage.find({ name });
 
         res.json({ data: posts });
@@ -65,6 +69,7 @@ export const createPost = async (req, res) => {
     const newPostMessage = new PostMessage({ ...post, creator: req.userId, createdAt: new Date().toISOString() })
 
     try {
+        //saves a new document to a MongoDB database using the save() method of a Mongoose model instance.
         await newPostMessage.save();
 
         res.status(201).json(newPostMessage);
