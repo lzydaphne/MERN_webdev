@@ -1,5 +1,7 @@
 import { FETCH_ALL, FETCH_BY_SEARCH, FETCH_BY_CREATOR, FETCH_POST, CREATE, UPDATE, DELETE, LIKE, COMMENT } from '../constants/actionTypes';
-
+/*
+state 一定要被初始化成某一個值
+*/ 
 export default (state = { isLoading: true, posts: [] }, action) => {
   switch (action.type) {
     case 'START_LOADING':

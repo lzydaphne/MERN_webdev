@@ -1,6 +1,11 @@
 import { START_LOADING, END_LOADING, FETCH_ALL, FETCH_POST, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE, COMMENT, FETCH_BY_CREATOR } from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
+/* payload 
+The payload property is often used in Redux to pass additional data to reducers, which are functions that update the application state based on the dispatched action. The payload can contain any type of data, such as a string, number, object, or array, and it can be used by the reducers to update the application state accordingly.
+
+In the code you provided, the payload is an empty array ([]), which means that no data is being passed to the reducers. However, in other cases, the payload might contain data that is relevant to the behavior being triggered by the action. For example, if the "FETCH_ALL" action is used to fetch data from an API, the payload might contain the response data returned by the API.
+*/
 export const getPost = (id) => async (dispatch) => {
   try {
     dispatch({ type: START_LOADING });

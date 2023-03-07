@@ -15,8 +15,18 @@ import thunk from 'redux-thunk';
 import { reducers } from './reducers';
 import App from './App';
 import './index.css';
-
 const store = createStore(reducers, {}, compose(applyMiddleware(thunk)));
+/*The "createStore" function takes three arguments:
+
+reducers - A reducer function or an object whose values are reducer functions. These reducer functions define how the state of your application should change in response to actions.
+
+initialState - The initial state of your application. This is an optional argument and can be set to an empty object {} if no initial state is needed.
+
+enhancer - An optional function that enhances the store with additional functionality. In this case, the applyMiddleware function from the redux library is used to add middleware to the store. Middleware allows you to extend the behavior of Redux by intercepting actions before they reach the reducers. The thunk middleware is passed as an argument to applyMiddleware to handle asynchronous actions.
+
+The compose function from the redux library is also used to combine multiple store enhancers into a single function.
+*/
+
 /*passing in the "store" as a prop. This makes the store available to all the components in the App component tree, allowing them to connect to the store and access its state and dispatch methods. */
 ReactDOM.render(
   <Provider store={store}>
